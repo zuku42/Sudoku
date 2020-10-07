@@ -6,10 +6,11 @@ import json
 import tkinter as tk
 
 import backend.sudoku_generator as sg
+from frontend.other_screens import WinScreen
 
 
 class GameScreen:
-    def __init__(self, master):
+    def __init__(self, master, user):
         
         def _draw_grid(window):
             self.c = tk.Canvas(window)
@@ -34,7 +35,9 @@ class GameScreen:
                 if r == 3:
                     y_pos += 5
                     r = 0
-                    
+
+        self.current_user = user
+
         self.master = master
         self.master.wm_title("Sudoku!")
         self.master.geometry("730x550")
@@ -115,7 +118,14 @@ class GameScreen:
                     self.solved = False
                 i += 1
             if self.solved:
-                pass
+                self.newWindow = tk.Tk()
+                WinScreen(self.newWindow,self.score)
+                self.master.after_cancel(self.last_job)
+                users = json.load(open('users.json'))
+                if self.score > users[self.current_user]["high score"]:
+                    users[self.current_user]["high score"] = self.score
+                file = open('users.json','w')
+                json.dump(users,file)
             else:
                 if self.score > 0:
                     self.score -= 50
