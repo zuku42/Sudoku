@@ -1,8 +1,8 @@
 import random
 import copy
 
-from sudoku_solver import solve
-import aux_sudoku_funcs as sud
+from backend.sudoku_solver import solve
+import backend.aux_sudoku_funcs as sud
 
 
 def init_grid():

@@ -1,4 +1,4 @@
-import aux_sudoku_funcs as sud
+import backend.aux_sudoku_funcs as sud
 
 def solve(grid):
 	"""
