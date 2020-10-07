@@ -56,7 +56,7 @@ def generate_puzzle(grid, solution, num_filled):
 				val = copy.deepcopy(grid[r][c]) #save the value
 				grid[r][c] = 0 #empty the spot
 				#check if this new grid leads to the same solution
-				if generate_puzzle(grid, solution, filled):
+				if generate_puzzle(grid, solution, num_filled):
 					return True
 				#if it doesn't, restore the value
 				grid[r][c] = val		
@@ -70,8 +70,8 @@ if __name__ == "__main__":
 	num_of_filled = 35
 	empty_grid = generate_puzzle(new_filled_grid, new_filled_grid_frozen, num_of_filled)
 	print("PUZZLE: ")
-	print_grid(new_filled_grid)
+	sud.print_grid(new_filled_grid)
 	solve(new_filled_grid)
 	print("")
 	print("SOLUTION: ")
-	print_grid(new_filled_grid)
+	sud.print_grid(new_filled_grid)
